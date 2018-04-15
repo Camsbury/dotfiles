@@ -1,0 +1,6 @@
+# name: typeclass
+# key: tc
+# expand-env: ((yas-indent-line 'fixed))
+# --
+class ${1:Class} where
+  ${2:someFun} :: ${3:someType}

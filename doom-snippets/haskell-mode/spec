@@ -1,0 +1,9 @@
+# name: spec
+# key: spec
+# expand-env: ((yas-indent-line 'fixed))
+# --
+spec_${1:fnName} :: Spec
+spec_$1 = do
+  describe "${2:spec description}" $ do
+    it "${3:unit test description}" $ do
+      ${4:pending}

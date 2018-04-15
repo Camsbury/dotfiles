@@ -1,0 +1,5 @@
+# name: should_be
+# key: sb
+# expand-env: ((yas-indent-line 'fixed))
+# --
+\`shouldBe\`$1

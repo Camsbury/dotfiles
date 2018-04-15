@@ -1,0 +1,9 @@
+# name: new_module_test
+# key: mt
+# expand-env: ((yas-indent-line 'fixed))
+# --
+module ${1:Module}Test where
+
+import Test.Prelude
+import $1
+

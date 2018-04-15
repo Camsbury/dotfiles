@@ -1,0 +1,11 @@
+# name: new_module_exports
+# key: me
+# expand-env: ((yas-indent-line 'fixed))
+# --
+-- | $3
+module ${1:Module}
+  ( $2
+  ) where
+
+import Prelude
+

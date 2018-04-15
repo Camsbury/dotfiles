@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: typeclass_constraints
+# key: tcc
+# expand-env: ((yas-indent-line 'fixed))
+# --
+($1) =>

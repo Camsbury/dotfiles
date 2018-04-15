@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tag
+# key: t
+# expand-env: ((yas-indent-line 'fixed))
+# --
+<${1:div}$2>$3</$1>

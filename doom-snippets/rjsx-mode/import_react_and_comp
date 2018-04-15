@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: import_react_and_comp
+# key: irc
+# expand-env: ((yas-indent-line 'fixed))
+# --
+import React, { Component } from "react";

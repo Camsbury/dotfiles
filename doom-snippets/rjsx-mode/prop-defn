@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: flow type defn for props
+# key: pdn
+# --
+type Props = {
+  $1: $2,
+}

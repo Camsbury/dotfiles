@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Import React dependency (ES6)
+# key: ir
+# expand-env: ((yas-indent-line 'fixed))
+# --
+import React from 'react'

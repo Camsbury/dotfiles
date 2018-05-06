@@ -4,7 +4,7 @@
   (load! +bindings)
   (load! +company)
   (load! +custom-functions)
-  ;(load! +custom-text-objects)
+  (load! +custom-text-objects)
   (load! +el)
   (load! +evil)
   (load! +git)

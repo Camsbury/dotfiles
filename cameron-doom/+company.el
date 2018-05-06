@@ -1,29 +1,15 @@
 (map!
- :i "C-SPC"  #'+company/complete
-
  (:after company
    (:map company-active-map
-     ;; Don't interfere with `evil-delete-backward-word' in insert mode
-     "C-w"        nil
-
-     ;; Navigate candidates
-     "C-n"        #'company-select-next
-     "C-p"        #'company-select-previous
-     "C-j"        #'company-select-next
-     "C-k"        #'company-select-previous
-     "C-l"        #'company-complete-selection
-     "C-SPC"      #'company-complete-common
+     "C-l"        #'company-complete-common
+     "<C-return>" #'company-complete-selection
      [tab]        #'yas-expand
-     [backtab]    #'company-select-previous
      [escape]     (λ! (company-abort) (evil-normal-state 1))
-     "<return>"   #'doom/newline-and-indent
-
-     ;; filter or show docs for candidate
-     "C-h"        #'company-show-doc-buffer
-     "C-s"        #'company-filter-candidates)))
+     "<return>"   #'newline
+     )))
 
 
 (after! company
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3))
+  )
 

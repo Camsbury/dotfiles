@@ -2,6 +2,8 @@
   :config
   (defun magit-commit-wip ()
     (interactive)
-    (magit-commit "-m wip"))
+    (magit-stage-modified)
+    (magit-stage-untracked)
+    (magit-commit '("-m wip")))
   (magit-define-popup-action 'magit-commit-popup
-    ?w "WIP" 'magit-commit-wip))
+    ?W "WIP" 'magit-commit-wip))

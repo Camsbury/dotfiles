@@ -9,6 +9,7 @@
   (load! +evil)
   (load! +git)
   (load! +haskell)
+  (load! +idris)
   (load! +js)
   ;(load! +lsp)
   (load! +magit)

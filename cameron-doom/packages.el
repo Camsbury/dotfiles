@@ -15,6 +15,9 @@
 
 (package! magit)
 
+;; idris
+(package! idris-mode)
+
 ;; elixir
 (package! flycheck-credo)
 

@@ -199,6 +199,9 @@ export DRONE_SERVER=https://ci.urbinternal.com
 # stack Haskell path add
 export PATH=$PATH:$HOME/.local/bin
 
+# cabal path add
+export PATH=$PATH:$HOME/.cabal/bin
+
 # anaconda path add
 export PATH=$PATH:~/anaconda/bin
 

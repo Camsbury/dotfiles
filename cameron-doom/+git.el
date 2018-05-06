@@ -1,5 +1,3 @@
-;;; ../../projects/dotfiles/cameron-doom/+git.el -*- lexical-binding: t; -*-
-
 (defalias 'ex! 'evil-ex-define-cmd)
 
 ;; GIT

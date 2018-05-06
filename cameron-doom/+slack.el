@@ -1,4 +1,3 @@
-;;; +slack.el -*- lexical-binding: t; -*-
 (def-package! slack
   :commands (slack-start)
   :after (evil)

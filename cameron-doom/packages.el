@@ -1,5 +1,4 @@
 ;; -*- no-byte-compile: t; -*-
-;;; private/ckingsbury/packages.el
 
 ;; align shell/emacs path
 (package! exec-path-from-shell)

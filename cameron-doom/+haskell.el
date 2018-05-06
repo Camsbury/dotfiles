@@ -1,5 +1,3 @@
-;;; +haskell.el -*- lexical-binding: t; -*-
-
 ;; intero stuff
 (def-package! intero
   :after haskell-mode

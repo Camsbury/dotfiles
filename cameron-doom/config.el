@@ -1,5 +1,3 @@
-;;; private/ckingsbury/config.el -*- lexical-binding: t; -*-
-
 (load! +secrets)
 
 (when (featurep 'evil)

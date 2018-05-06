@@ -1,5 +1,3 @@
-;;; +magit.el  -*- lexical-binding: t; -*-
-
 (def-package! magit
   :config
   (defun magit-commit-wip ()

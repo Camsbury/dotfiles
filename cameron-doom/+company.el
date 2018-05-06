@@ -1,6 +1,3 @@
-;;; ../../projects/dotfiles/cameron-doom/+company.el -*- lexical-binding: t; -*-
-
- ;; company-mode (vim-like omnicompletion)
 (map!
  :i "C-SPC"  #'+company/complete
 

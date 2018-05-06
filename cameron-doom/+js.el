@@ -1,5 +1,3 @@
-;;; +js.el -*- lexical-binding: t; -*-
-
 (add-hook! js-mode
   (require 'evil-text-objects-javascript)
   (flycheck-mode)

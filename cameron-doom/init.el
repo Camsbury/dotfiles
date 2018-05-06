@@ -1,5 +1,3 @@
-;;; private/ckingsbury/init.el -*- lexical-binding: t; -*-
-
 
 (setq exec-path
       (list "/usr/local/bin/"

@@ -1,5 +1,3 @@
-;;; private/ckingsbury/+org.el -*- lexical-binding: t; -*-
-
 (setq org-directory (expand-file-name "~/projects/lxndr/"))
 
 (defun +cameron/org-capture-hook ()

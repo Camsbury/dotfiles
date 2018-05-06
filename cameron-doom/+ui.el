@@ -1,5 +1,3 @@
-;;; +ui.el -*- lexical-binding: t; -*-
-
 (after! doom-themes
   ;; Since Fira Mono doesn't have an italicized variant, highlight it instead
   (setq doom-theme 'doom-molokai)

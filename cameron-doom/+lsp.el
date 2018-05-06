@@ -1,5 +1,3 @@
-;;; lsp.el -*- lexical-binding: t; -*-
-
 ;; language server integration
 (def-package! lsp-mode
   :after (:any haskell-mode)

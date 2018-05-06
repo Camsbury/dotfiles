@@ -1,5 +1,3 @@
-;;; +style.el -*- lexical-binding: t; -*-
-
 ;; Spaces over tabs TODO: define details
 (setq c-basic-indent 2)
 (setq c-default-style "linux")

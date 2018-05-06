@@ -1,5 +1,3 @@
-;;; private/ckingsbury/+evil.el -*- lexical-binding: t; -*-
-
 (after! evil-mc
   ;; if I'm in insert mode, chances are I want cursors to resume
   (add-hook! 'evil-mc-before-cursors-created

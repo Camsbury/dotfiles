@@ -1,5 +1,3 @@
-;;; +custom-functions.el -*- lexical-binding: t; -*-
-
 (defun +evil-replace-under-point ()
   "Faster than typing %s//thing/g"
   (interactive)

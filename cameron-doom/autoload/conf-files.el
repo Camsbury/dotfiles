@@ -23,11 +23,20 @@
   (shell-script-mode))
 
 ;;;###autoload
-(defun +camsbury/open-hammerspoon-config ()
-  "opens my hammerspoon config"
+(defun +camsbury/open-skhdrc ()
+  "opens my skhdrc"
   (interactive)
   (evil-window-vsplit)
-  (find-file "~/.hammerspoon/init.lua"))
+  (find-file "~/.skhdrc")
+  (shell-script-mode))
+
+;;;###autoload
+(defun +camsbury/open-chunkwm-config ()
+  "opens my skhdrc"
+  (interactive)
+  (evil-window-vsplit)
+  (find-file "~/.chunkwmrc")
+  (shell-script-mode))
 
 ;;;###autoload
 (defun +camsbury/open-doom-init ()

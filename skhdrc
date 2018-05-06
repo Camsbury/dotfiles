@@ -1,0 +1,62 @@
+################################################################################
+# window management
+
+# enter fullscreen mode
+ctrl + shift + alt - f : chunkc tiling::window --toggle fullscreen
+
+# change focus between tiling / floating windows
+ctrl + shift + alt - space : chunkc tiling::window --toggle float
+
+# change layout
+ctrl + shift + alt - e : chunkc tiling::desktop --layout bsp
+ctrl + shift + alt - s : chunkc tiling::desktop --layout monocle
+
+# kill window
+shift + alt - q : chunkc tiling::window --close
+
+# move window
+ctrl + shift + alt - h : chunkc tiling::window --swap west
+ctrl + shift + alt - j : chunkc tiling::window --swap south
+ctrl + shift + alt - k : chunkc tiling::window --swap north
+ctrl + shift + alt - l : chunkc tiling::window --swap east
+
+# adjust window
+shift + alt - l : chunkc tiling::window -r 0.1 -e east
+shift + alt - h : chunkc tiling::window -r 0.1 -e west
+
+# equalize windows
+ctrl + shift + alt - o : chunkc tiling::desktop --equalize
+
+# move focused container to monitor
+ctrl + shift + alt - 0x2B : chunkc tiling::window --send-to-monitor next
+ctrl + shift + alt - 0x2F : chunkc tiling::window --send-to-monitor prev
+
+
+################################################################################
+# apps
+hyper - a : open -a /Applications/Utilities/Activity\ Monitor.app
+hyper - b : open -a /Applications/iBooks.app
+hyper - c : open -a /Applications/Google\ Chrome.app
+hyper - d : open -a /Applications/Dash.app
+hyper - e : open -a /usr/local/Cellar/emacs/26.1-rc1/Emacs.app
+# hyper - f : open -a filler
+# hyper - g : open -a filler
+# hyper - h : open -a filler
+# hyper - i : open -a filler
+hyper - j : open -a /Applications/JQBX.app
+hyper - k : open -a /Applications/Slack.app
+hyper - l : open -a /Applications/LimeChat.app
+hyper - m : open -a /Applications/Messages.app
+# hyper - n : open -a filler
+# hyper - o : open -a filler
+hyper - p : open -a /Applications/1Password\ 6.app
+# hyper - q : open -a filler
+# hyper - r : open -a filler
+hyper - s : open -a /Applications/Spotify.app
+hyper - t : open -a /Applications/iTerm.app
+# hyper - u : open -a filler
+hyper - v : open -a /Applications/VLC.app
+hyper - w : open -a /Applications/Preview.app
+# hyper - x : open -a filler
+# hyper - y : open -a filler
+# hyper - z : open -a filler

@@ -232,3 +232,11 @@ alias rmdb='rm -rf data/graph.db'
 
 # emacs stuff
 alias emd='emacs --debug-init'
+
+# chunkwm utility
+function upgrade-chunkwm() {
+    brew reinstall --HEAD chunkwm
+    codesign -fs "chunkwm-cert" $(brew --prefix chunkwm)/bin/chunkwm
+    brew services restart chunkwm
+}
+alias uch='upgrade-chunkwm'

@@ -88,7 +88,8 @@
        :desc "Open emacs bindings"     :nv "b" #'+camsbury/open-emacs-bindings
        :desc "Open emacs config"       :nv "c" #'+camsbury/open-emacs-config
        :desc "Open zshrc"              :nv "n" #'+camsbury/open-zshrc
-       :desc "Open hammerspoon config" :nv "i" #'+camsbury/open-hammerspoon-config
+       :desc "Open skhdrc"             :nv "i" #'+camsbury/open-skhdrc
+       :desc "Open chunkwm config"     :nv "y" #'+camsbury/open-chunkwm-config
        :desc "Open doom init"          :nv "o" #'+camsbury/open-doom-init
        :desc "Open ergo conf"          :nv "e" #'+camsbury/open-ergodox-bindings
        )

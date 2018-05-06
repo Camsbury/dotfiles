@@ -5,14 +5,14 @@
   "opens my +bindings.el"
   (interactive)
   (evil-window-vsplit)
-  (find-file "~/.emacs.d/modules/private/ckingsbury/+bindings.el"))
+  (find-file "~/.doom.d/+bindings.el"))
 
 ;;;###autoload
 (defun +camsbury/open-emacs-config ()
   "opens my config.el"
   (interactive)
   (evil-window-vsplit)
-  (find-file "~/.emacs.d/modules/private/ckingsbury/config.el"))
+  (find-file "~/.doom.d/config.el"))
 
 ;;;###autoload
 (defun +camsbury/open-zshrc ()

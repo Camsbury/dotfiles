@@ -224,6 +224,9 @@ alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-m
 alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
 alias shl='stack exec -- hlint src test app'
 
+# grid-client aliases
+alias pretty='npx prettier --write "./src/**/*.js"'
+
 # grid aliases
 alias rmdb='rm -rf data/graph.db'
 

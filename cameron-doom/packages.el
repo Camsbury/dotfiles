@@ -13,7 +13,9 @@
 (package! intero)
 (package! evil-text-objects-haskell :recipe (:fetcher github :repo "urbint/evil-text-objects-haskell"))
 
+;; magit
 (package! magit)
+(package! evil-magit)
 
 ;; idris
 (package! idris-mode)

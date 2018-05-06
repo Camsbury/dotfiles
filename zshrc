@@ -206,16 +206,23 @@ export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:~/anaconda/bin
 
 # haskell aliases
+function stack-watch-test-pattern() {
+  pattern="${1:-}"
+  stack test --file-watch grid:grid-test --ta "-p ${pattern}"
+}
+
 alias hs='stack ghci'
 alias sb='stack build'
 alias sp='stack build --pedantic'
-alias st='stack test'
-alias sts='stack test --ta "--hedgehog-tests 5"'
+alias st='stack test --ta "--hedgehog-tests 5"'
+alias stl='stack test'
 alias stw='stack test --file-watch --ta "--hedgehog-tests 5"'
+alias stwp='stack-watch-test-pattern'
 alias sbt="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success'"
-alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules && stack build --pedantic && stack exec -- hlint src test app'
-alias sds='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
-alias sdss='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
+alias sbw='ghcid -c "stack ghci" | source-highlight -s haskell -f esc'
+alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
+alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
+alias shl='stack exec -- hlint src test app'
 
 # grid aliases
 alias rmdb='rm -rf data/graph.db'

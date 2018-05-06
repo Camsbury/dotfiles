@@ -13,7 +13,7 @@
      "C-k"        #'company-select-previous
      "C-l"        #'company-complete-selection
      "C-SPC"      #'company-complete-common
-     [tab]        #'company-complete-common-or-cycle
+     [tab]        #'yas-expand
      [backtab]    #'company-select-previous
      [escape]     (λ! (company-abort) (evil-normal-state 1))
      "<return>"   #'doom/newline-and-indent

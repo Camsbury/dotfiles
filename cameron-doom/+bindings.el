@@ -77,6 +77,7 @@
    :desc "smerge hydra"         :nv "o"   #'+hydra-smerge/body
    :desc "Recent files"         :nv "n"   #'counsel-recentf
    :desc "Find file in project" :nv "p"   #'projectile-find-file
+   :desc "Reload the project"   :nv "P"   #'projectile-invalidate-cache
    :desc "Slack IM"             :nv "s"   #'slack-im-select
    :desc "Sort"                 :nv "S"   #'sort-lines
    :desc "Find file"            :nv "t"   #'find-file

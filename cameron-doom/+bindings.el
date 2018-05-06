@@ -53,7 +53,7 @@
 
    ;; Major Utility
    :desc "Describe key"         :nv "TAB" #'describe-key
-   :desc "Spawn recent file"    :nv "DEL" #'+camsbury/spawn-recent
+   :desc "Spawn Project File"   :nv "DEL" #'+spawn-project-file
    :desc "Capture"              :nv "RET" #'org-capture
    :desc "Swiper"               :nv "/"   #'swiper
    :desc "eval defun"           :nv ")"   #'eval-defun

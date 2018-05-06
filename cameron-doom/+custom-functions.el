@@ -25,3 +25,10 @@
            (+workspace-switch project-name)
            (progn (+workspace-switch project-name t)
                   (counsel-projectile-switch-project-action project-path)))))))
+
+(defun +spawn-project-file ()
+  "opens a new vertical split, along with a fzf for a projectile file"
+  (interactive)
+  (require 'projectile)
+  (evil-window-vsplit)
+  (projectile-find-file))

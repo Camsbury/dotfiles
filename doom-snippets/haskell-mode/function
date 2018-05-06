@@ -1,4 +1,4 @@
-# name: Function
+# name: function
 # key: f
 # expand-env: ((yas-indent-line 'fixed))
 # --

@@ -12,7 +12,7 @@
   (load! +idris)
   (load! +js)
   ;(load! +lsp)
-  (load! +magit)
+  (load! +markdown)
   (load! +org)
   (load! +projectile)
   (load! +slack)

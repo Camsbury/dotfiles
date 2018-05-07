@@ -7,6 +7,8 @@
   (add-hook! 'intero-mode-hook #'(flycheck-mode eldoc-mode))
   (set! :lookup 'haskell-mode :definition #'intero-goto-definition)
   (flycheck-add-next-checker 'intero 'haskell-hlint)
+  (require 'hasky-extensions)
+  (require 'hasky-stack)
   )
 
 (add-hook! haskell-mode

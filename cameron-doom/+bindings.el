@@ -117,6 +117,10 @@
        :desc "Toggle profiler"         :n "p" #'doom/toggle-profiler
        )
 
+     (:desc "restart" :prefix "r"
+       :desc "restart emacs" :n "r" #'restart-emacs
+       )
+
      (:desc "tmux" :prefix "t"
        :desc "rerun last command"  :n "n" #'+russ/tmux-repeat
        :desc "fire shell command"  :n "h" #'+russ/shell-command
@@ -318,9 +322,9 @@
        :desc "import"           :nv "i" #'+camsbury/haskell/add-import
        :desc "restart repl"     :nv "j" #'intero-repl-restart
        :desc "load repl"        :nv "l" #'intero-repl-load
-       :desc "add extension"    :nv "o" #'+camsbury/haskell/add-extension
+       :desc "add extension"    :nv "o" #'hasky-extensions
        :desc "restart intero"   :nv "r" #'intero-restart
-       :desc "sort imports"     :nv "s" #'haskell-sort-imports
+       :desc "stack execute"    :nv "s" #'hasky-stack-execute
        :desc "get info"         :nv "f" #'intero-info
        :desc "set targets"      :nv "h" #'intero-targets
        )

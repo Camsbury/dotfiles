@@ -1,33 +1,29 @@
 ;; -*- no-byte-compile: t; -*-
 
-;; align shell/emacs path
-(package! exec-path-from-shell)
-
-;; lsp
-(package! lsp-mode)
-(package! lsp-ui :recipe (:fetcher github :repo "emacs-lsp/lsp-ui"))
-(package! lsp-haskell)
-(package! company-lsp)
-
-;; haskell
-(package! intero)
-(package! evil-text-objects-haskell :recipe (:fetcher github :repo "urbint/evil-text-objects-haskell"))
-
-;; magit
-(package! magit)
-(package! evil-magit)
-
-;; idris
-(package! idris-mode)
-
-;; elixir
-(package! flycheck-credo)
-
 ;; elisp
 (package! s)
 (package! dash)
 (package! dash-functional)
 (package! paredit)
+
+;; elixir
+(package! flycheck-credo)
+
+;; git / diff
+(package! magit)
+(package! evil-magit)
+
+(package! evil-ediff)
+(package! smeargle)
+
+;; haskell
+(package! intero)
+(package! hasky-stack)
+(package! hasky-extensions)
+(package! evil-text-objects-haskell :recipe (:fetcher github :repo "urbint/evil-text-objects-haskell"))
+
+;; idris
+(package! idris-mode)
 
 ;; js
 (package! flow-minor-mode)
@@ -37,8 +33,14 @@
 (package! rjsx-mode)
 (package! evil-text-objects-javascript :recipe (:fetcher github :repo "urbint/evil-text-objects-javascript"))
 
-;; spotify
-(package! counsel-spotify)
+;; lsp
+(package! lsp-mode)
+(package! lsp-ui :recipe (:fetcher github :repo "emacs-lsp/lsp-ui"))
+(package! lsp-haskell)
+(package! company-lsp)
+
+;; markdown
+(package! gh-md)
 
 ;; slack
 (package! slack)
@@ -46,3 +48,10 @@
 (package! oauth2)
 (package! circe)
 (package! el-get)
+
+;; spotify
+(package! counsel-spotify)
+
+;; ui
+(package! exec-path-from-shell)
+(package! restart-emacs)

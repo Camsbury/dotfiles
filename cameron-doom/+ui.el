@@ -22,3 +22,6 @@
 ;; makes undo-tree-visualizer have a reasonable buffer height
 (after! undo-tree-visualizer-mode
   (fit-window-to-buffer))
+
+;; provides a function to restart emacs
+(def-package! restart-emacs)

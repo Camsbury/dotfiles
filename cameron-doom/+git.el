@@ -40,3 +40,6 @@
      :nv "w" #'git-timemachine-kill-abbreviated-revision
      :nv "W" #'git-timemachine-kill-revision
      :nv "b" #'git-timemachine-blame)))
+
+(def-package! smeargle)
+(def-package! evil-ediff)

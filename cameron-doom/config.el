@@ -11,7 +11,7 @@
   (load! +haskell)
   (load! +idris)
   (load! +js)
-  ;(load! +lsp)
+  (load! +lsp)
   (load! +markdown)
   (load! +org)
   (load! +projectile)

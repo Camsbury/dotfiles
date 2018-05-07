@@ -1,6 +1,7 @@
 ;; language server integration
 (def-package! lsp-mode
-  :after (:any haskell-mode)
+  ;; :after
+  ;; (:any haskell-mode)
   :config
   (lsp-mode))
 
@@ -22,7 +23,7 @@
   (setq company-lsp-async t))
 
 ;; haskell in particular
-(def-package! lsp-haskell
-  :after (lsp-mode lsp-ui haskell-mode)
-  :hook
-  (haskell-mode . lsp-haskell-enable))
+;; (def-package! lsp-haskell
+;;   :after (lsp-mode lsp-ui haskell-mode)
+;;   :hook
+;;   (haskell-mode . lsp-haskell-enable))

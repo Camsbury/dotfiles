@@ -1,4 +1,3 @@
-;; intero stuff
 (def-package! intero
   :after haskell-mode
   :config
@@ -7,8 +6,6 @@
   (add-hook! 'intero-mode-hook #'(flycheck-mode eldoc-mode))
   (set! :lookup 'haskell-mode :definition #'intero-goto-definition)
   (flycheck-add-next-checker 'intero 'haskell-hlint)
-  (require 'hasky-extensions)
-  (require 'hasky-stack)
   )
 
 (add-hook! haskell-mode
@@ -19,6 +16,8 @@
   (whitespace-mode t)
   (auto-fill-mode t)
   (rainbow-delimiters-mode)
+  (require 'hasky-extensions)
+  (require 'hasky-stack)
   (require 'evil-text-objects-haskell)
   (evil-text-objects-haskell/install))
 

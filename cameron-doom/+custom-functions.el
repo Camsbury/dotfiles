@@ -30,3 +30,10 @@
   (require 'projectile)
   (evil-window-vsplit)
   (projectile-find-file))
+
+(defun +spawn-recent-file ()
+  "opens a new vertical split, along with a fzf for a recent file"
+  (interactive)
+  (require 'projectile)
+  (evil-window-vsplit)
+  (counsel-recentf))

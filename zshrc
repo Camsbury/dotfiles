@@ -121,6 +121,7 @@ alias gds='git diff --staged'
 alias gfl='git-files'
 alias gfx='git commit --fixup'
 alias gi='git init'
+alias glf='git fetch && git reset --hard origin/master'
 alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gpf='git push --force'
 alias gpop='git reset head~'
@@ -187,6 +188,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # shell aliases
 alias zz='source ~/.zshrc'
+alias ls='exa'
+alias ll='exa -l'
+alias la='exa -la'
 
 # python aliases
 alias py='python'
@@ -213,22 +217,33 @@ function stack-watch-test-pattern() {
 
 alias hs='stack ghci'
 alias sb='stack build'
+alias sben='stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules'
 alias sp='stack build --pedantic'
-alias st='stack test --ta "--hedgehog-tests 5"'
+alias st='stack test grid:grid-test --ta "--hedgehog-tests 5"'
+alias std='stack test grid:doctests'
 alias stl='stack test'
-alias stw='stack test --file-watch --ta "--hedgehog-tests 5"'
+# alias stw='stack test grid:grid-test --file-watch --ta "--hedgehog-tests 5"'
+alias stw='TASTY_HEDGEHOG_TESTS=5 ghcid -c "stack ghci grid:lib grid:grid-test --ghci-options=-fobject-code --warnings" --test "Main.main" | source-highlight -s haskell -f esc'
 alias stwp='stack-watch-test-pattern'
 alias sbt="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success'"
 alias sbw='ghcid -c "stack ghci" | source-highlight -s haskell -f esc'
-alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
-alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack build --pedantic && stack exec -- hlint src test app'
+alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules  && stack build --pedantic && stack exec -- hlint src test app'
+alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules && stack build --pedantic && stack exec -- hlint src test app'
 alias shl='stack exec -- hlint src test app'
+alias s='stack'
 
 # grid-client aliases
 alias pretty='npx prettier --write "./src/**/*.js"'
 
 # grid aliases
 alias rmdb='rm -rf data/graph.db'
+
+# urbint/<project-name>/scripts/* compliant aliases
+alias xs="scripts/start"
+alias xup="scripts/setup"
+alias xt="scripts/test"
+alias xb="scripts/bootstrap"
+alias xdoc="scripts/docs"
 
 # emacs stuff
 alias emd='emacs --debug-init'

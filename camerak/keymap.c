@@ -21,6 +21,8 @@ enum custom_keycodes {
   EMACS_BINDINGS,
   EMACS_CONFIG,
   ZSHRC,
+  KHDRC,
+  CHUNKRC,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //LEFT HAND
       KC_NO,   KC_NO,      KC_NO,          KC_NO,          KC_NO,          KC_NO,     KC_NO,
       KC_NO,   KC_DLR,     KC_CIRC,        KC_HASH,        KC_UNDS,        KC_NO,     KC_NO,
-      KC_NO,   KC_KP_PLUS, KC_KP_ASTERISK, KC_EQUAL,       KC_MINUS,       KC_QUES,
+      KC_TRNS, KC_PLUS, KC_ASTERISK, KC_EQUAL,       KC_MINUS,       KC_QUES,
       KC_LCBR, KC_LEFT,    KC_DOWN,        KC_UP,          KC_RIGHT,       KC_NO,     KC_NO,
       KC_NO,   KC_NO,      KC_NO,          KC_NO,          KC_NO,
 
@@ -67,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //RIGHT HAND
       KC_NO,   KC_NO,      KC_NO,          KC_NO,          KC_NO,          KC_NO,     KC_NO,
       KC_NO,   KC_NO,      KC_AT,          KC_PERC,        KC_PIPE,        KC_SCOLON, KC_NO,
-               KC_EXLM,    KC_QUOTE,       KC_DQUO,        KC_GRAVE,       KC_TILD,   KC_NO,
+               KC_EXLM,    KC_QUOTE,       KC_DQUO,        KC_GRAVE,       KC_TILD,   KC_TRNS,
       KC_NO,   KC_NO,      KC_AMPR,        KC_LABK,        KC_RABK,        KC_BSLASH, KC_RCBR,
                            KC_NO,          KC_NO,          KC_NO,          KC_NO,     KC_NO,
 
@@ -86,19 +88,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                               KC_NO,          KC_NO,
                                                                                             KC_NO,
-                                                              KC_NO,          KC_NO,        KC_NO,
+                                                              KC_NO,          KC_TRNS,      KC_NO,
 
 
       //RIGHT HAND
       KC_NO,          KC_F6,        KC_F7,        KC_F8,      KC_F9,          KC_F10,       KC_F11,
       KC_NO,          KC_NO,        ZSHRC,        KC_NO,      KC_NO,          KC_NO,        KC_F12,
                       KC_6,         KC_7,         KC_8,       KC_9,           KC_0,         KC_NO,
-      KC_NO,          KC_NO,        KC_NO,        KC_NO,      KC_NO,          KC_NO,        KC_LCTL,
+      KC_NO,          KC_NO,        KHDRC,        CHUNKRC,    KC_NO,          KC_NO,        KC_LCTL,
                                     KC_LGUI,      KC_LALT,    MEH_T(KC_NO),   ALL_T(KC_NO), KC_NO,
 
       KC_NO,
                       KC_NO,        KC_NO,
-      TO(3),          TO(4),        KC_NO),
+      TO(3),          KC_TRNS,      TO(4)),
 
   // SC2 LAYER
   [3] = KEYMAP(
@@ -115,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
       //AUXILIARY HAND
-      KC_NO,          KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN,  LGUI(KC_KP_PLUS), LGUI(KC_MINUS), TO(0),
+      KC_NO,          KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN,  LGUI(KC_PLUS), LGUI(KC_MINUS), TO(0),
       LGUI(KC_SPACE), KC_J,           KC_L,            KC_U,               KC_Y,             KC_COLN,        KC_DELETE,
                       KC_H,           KC_N,            KC_E,               KC_I,             KC_O,           KC_RBRACKET,
       KC_NO,          KC_K,           KC_M,            KC_COMMA,           KC_DOT,           KC_SLASH,       KC_RSPC,
@@ -140,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
       //AUXILIARY HAND
-      KC_NO,             KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN,  LGUI(KC_KP_PLUS), LGUI(KC_MINUS),  TO(0),
+      KC_NO,             KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN,  LGUI(KC_PLUS), LGUI(KC_MINUS),  TO(0),
       LGUI(KC_SPACE),    KC_J,           KC_L,            KC_U,               KC_Y,             KC_COLN,         KC_DELETE,
                          KC_H,           KC_N,            KC_E,               KC_I,             KC_O,            LT(1,KC_RBRACKET),
       KC_NO,             KC_K,           KC_M,            KC_COMMA,           KC_DOT,           KC_SLASH,        KC_RSPC,
@@ -247,6 +249,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ZSHRC:
       if (record->event.pressed) {
           SEND_STRING("  cn");
+      }
+      return false;
+      break;
+    case KHDRC:
+      if (record->event.pressed) {
+          SEND_STRING("  ci");
+      }
+      return false;
+      break;
+    case CHUNKRC:
+      if (record->event.pressed) {
+          SEND_STRING("  cI");
       }
       return false;
       break;

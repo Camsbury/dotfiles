@@ -25,6 +25,9 @@
 ;; idris
 (package! idris-mode)
 
+;; irc
+(package! circe)
+
 ;; js
 (package! flow-minor-mode)
 (package! company-flow)
@@ -55,3 +58,4 @@
 ;; ui
 (package! exec-path-from-shell)
 (package! restart-emacs)
+(package! google-translate)

@@ -30,3 +30,39 @@
   (setq haskell-font-lock-symbols-alist (cons '("^." "⌾" haskell-font-lock-dot-is-not-composition) haskell-font-lock-symbols-alist))
   (setq haskell-font-lock-symbols-alist (cons '("<>" "⊕" haskell-font-lock-dot-is-not-composition) haskell-font-lock-symbols-alist))
   (setq haskell-font-lock-symbols t))
+
+;; (define-minor-mode brittany-haskell-mode
+;;   :init-value nil
+;;   :group 'haskell
+;;   :lighter "Brittany-Haskell"
+;;   :keymap '()
+;;   )
+
+
+;; (defun urbint/format-haskell-source ()
+;;   (interactive)
+;;   (let ((output-buffer (generate-new-buffer "brittany-out"))
+;;         (config-file-path
+;;          (concat (string-trim
+;;                   (shell-command-to-string "stack path --project-root"))
+;;                  "/brittany.yaml")))
+;;     (when (= 0 (call-process-region
+;;                 (point-min) (point-max)
+;;                 "stack"
+;;                 nil output-buffer nil
+;;                 "exec" "--" "brittany" "--config-file" config-file-path))
+;;       (let ((pt (point))
+;;             (wst (window-start))
+;;             (formatted-source (with-current-buffer output-buffer
+;;                                 (buffer-string))))
+;;         (erase-buffer)
+;;         (insert formatted-source)
+;;         (goto-char pt)
+;;         (set-window-start nil wst)))))
+
+;; (add-hook
+;;  'before-save-hook
+;;  (lambda ()
+;;    (when (and (eq major-mode 'haskell-mode)
+;;               (bound-and-true-p brittany-haskell-mode))
+;;      (urbint/format-haskell-source))))

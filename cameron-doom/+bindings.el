@@ -50,7 +50,7 @@
    ;; Major Utility
    :desc "Describe key"         :nv "TAB" #'describe-key
    :desc "Spawn Project File"   :nv "DEL" #'+spawn-project-file
-   :desc "Capture"              :nv "RET" #'org-capture
+   :desc "Recent files"         :nv "RET" #'+spawn-recent-file
    :desc "Swiper"               :nv "/"   #'swiper
    :desc "eval defun"           :nv ")"   #'eval-defun
    :desc "eval and print"       :nv "}"   #'eval-print-last-sexp
@@ -62,7 +62,8 @@
    :desc "Jump to definition"   :nv "e"   #'+lookup/definition
    :desc "Magit status"         :nv "g"   #'magit-status
    :desc "Magit blame"          :nv "G"   #'magit-blame
-   :desc "Open temp org file"   :nv "h"   #'+camsbury/open-tmp-org
+   :desc "Capture"              :nv "h"   #'org-capture
+   :desc "Open temp org file"   :nv "H"   #'+camsbury/open-tmp-org
    :desc "Imenu"                :nv "i"   #'imenu
    :desc "Imenu across buffers" :nv "I"   #'imenu-anywhere
    :desc "Horizontal Split"     :nv "j"   #'evil-window-split
@@ -70,10 +71,11 @@
    :desc "kill buffer"          :nv "K"   #'kill-buffer
    :desc "vertical split"       :nv "l"   #'evil-window-vsplit
    :desc "todo list"            :nv "L"   #'org-todo-list
+   :desc "Find file in project" :nv "n"   #'counsel-recentf
+   :desc "Find file in project" :nv "N"   #'projectile-find-file
    :desc "smerge hydra"         :nv "o"   #'+hydra-smerge/body
-   :desc "Recent files"         :nv "n"   #'counsel-recentf
-   :desc "Find file in project" :nv "p"   #'projectile-find-file
-   :desc "Reload the project"   :nv "P"   #'projectile-invalidate-cache
+   :desc "Reload the project"   :nv "p"   #'projectile-invalidate-cache
+   :desc "switch project"       :nv "P"   #'projectile-switch-project
    :desc "Slack IM"             :nv "s"   #'slack-im-select
    :desc "Sort"                 :nv "S"   #'sort-lines
    :desc "Find file"            :nv "t"   #'find-file
@@ -81,7 +83,8 @@
    :desc "Save file"            :nv "w"   #'evil-write
    :desc "Save file"            :nv "W"   #'evil-write-all
    :desc "Save and close file"  :nv "q"   #'evil-save-modified-and-close
-   :desc "Close file no save"   :v  "Q"   #'evil-quit
+   :desc "Close file no save"   :nv "Q"   #'evil-quit
+   :desc "Git Time Machine"     :nv "z"   #'git-timemachine-toggle
 
    (:desc "command tree" :prefix "SPC"
      (:desc "conf-files" :prefix "c"
@@ -89,14 +92,9 @@
        :desc "Open emacs config"       :nv "c" #'+camsbury/open-emacs-config
        :desc "Open zshrc"              :nv "n" #'+camsbury/open-zshrc
        :desc "Open skhdrc"             :nv "i" #'+camsbury/open-skhdrc
-       :desc "Open chunkwm config"     :nv "y" #'+camsbury/open-chunkwm-config
+       :desc "Open chunkwm config"     :nv "I" #'+camsbury/open-chunkwm-config
        :desc "Open doom init"          :nv "o" #'+camsbury/open-doom-init
        :desc "Open ergo conf"          :nv "e" #'+camsbury/open-ergodox-bindings
-       )
-
-     (:desc "git" :prefix "g"
-       :desc "Git time machine"  :n  "t" #'git-timemachine-toggle
-       :desc "Git revert hunk"   :n  "r" #'git-gutter:revert-hunk
        )
 
      (:desc "help" :prefix "h"
@@ -156,8 +154,8 @@
 (map!
  :nv "[t" #'evil-prev-buffer
  :nv "]t" #'evil-next-buffer
- :m  "]e" #'next-error
- :m  "[e" #'previous-error
+ :m  "]e" #'flycheck-next-error
+ :m  "[e" #'flycheck-previous-error
  :m  "]f" #'text-scale-increase
  :m  "[f" #'text-scale-decrease
  :nv "[s" #'+workspace/switch-left

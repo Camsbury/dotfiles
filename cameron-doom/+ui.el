@@ -25,3 +25,6 @@
 
 ;; provides a function to restart emacs
 (def-package! restart-emacs)
+
+;; google translate in buffer
+(def-package! google-translate)

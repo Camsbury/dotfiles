@@ -1,11 +1,8 @@
 (setq org-directory (expand-file-name "~/projects/lxndr/"))
 
 (defun +cameron/org-capture-hook ()
-  (setq org-capture-templates '(("n" "Push onto Task Stack" entry
+  (setq org-capture-templates '(("RET" "Push onto Task Stack" entry
                                  (file+headline "~/projects/lxndr/task_stack.org" "Tasks")
-                                 "* [ ] %i%?")
-                                ("e" "Push onto Fact Stack" entry
-                                 (file+headline "~/projects/lxndr/fact_stack.org" "Facts")
                                  "* [ ] %i%?"))
 
         org-agenda-files '("~/projects/lxndr/queue.org")))

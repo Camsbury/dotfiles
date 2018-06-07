@@ -1,3 +1,5 @@
+# -*- shell-script -*-
+
 chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
 
 chunkc core::hotload 1

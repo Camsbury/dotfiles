@@ -1,31 +1,31 @@
+# -*- shell-script -*-
+
 ################################################################################
 # window management
 
 # restart chunkwm
-ctrl + shift + alt - t : brew services stop skhd; brew services start skhd
+# ctrl + shift + alt - t : brew services stop skhd; brew services start skhd
 
 # enter fullscreen mode
 ctrl + shift + alt - f : chunkc tiling::window --toggle fullscreen
 
 # change focus between tiling / floating windows
-ctrl + shift + alt - space : chunkc tiling::window --toggle float
+ctrl + shift + alt - t : chunkc tiling::window --toggle float
 
 # change layout
 ctrl + shift + alt - e : chunkc tiling::desktop --layout bsp
 ctrl + shift + alt - s : chunkc tiling::desktop --layout monocle
 
 # kill window
-shift + alt - q : chunkc tiling::window --close
+ctrl + shift + alt - q : chunkc tiling::window --close
 
 # move window
-ctrl + shift + alt - h : chunkc tiling::window --swap west
-ctrl + shift + alt - j : chunkc tiling::window --swap south
-ctrl + shift + alt - k : chunkc tiling::window --swap north
-ctrl + shift + alt - l : chunkc tiling::window --swap east
+ctrl + shift + alt - j : chunkc tiling::window --swap east
+ctrl + shift + alt - k : chunkc tiling::window --swap west
 
 # adjust window
-shift + alt - l : chunkc tiling::window -r 0.08 -e east
-shift + alt - h : chunkc tiling::window -r 0.08 -e west
+ctrl + shift + alt - l : chunkc tiling::window -r 0.08 -e east
+ctrl + shift + alt - h : chunkc tiling::window -r 0.08 -e west
 
 # equalize windows
 ctrl + shift + alt - o : chunkc tiling::desktop --equalize

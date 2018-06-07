@@ -59,11 +59,11 @@
    :desc "All buffers"          :nv "]"   #'switch-to-buffer
    :desc "from project"         :nv "a"   #'+projectile-switch-project-workspace
    :desc "Agenda list"          :nv "A"   #'org-agenda-list
-   :desc "Jump to definition"   :nv "e"   #'+lookup/definition
+   :desc "Jump to definition"   :nv "d"   #'+lookup/definition
    :desc "Magit status"         :nv "g"   #'magit-status
    :desc "Magit blame"          :nv "G"   #'magit-blame
    :desc "Capture"              :nv "h"   #'org-capture
-   :desc "Open temp org file"   :nv "H"   #'+camsbury/open-tmp-org
+   :desc "Open temp org file"   :nv "H"   #'open-tmp-org
    :desc "Imenu"                :nv "i"   #'imenu
    :desc "Imenu across buffers" :nv "I"   #'imenu-anywhere
    :desc "Horizontal Split"     :nv "j"   #'evil-window-split
@@ -72,7 +72,7 @@
    :desc "vertical split"       :nv "l"   #'evil-window-vsplit
    :desc "todo list"            :nv "L"   #'org-todo-list
    :desc "Find file in project" :nv "n"   #'counsel-recentf
-   :desc "Find file in project" :nv "N"   #'projectile-find-file
+   :desc "Find file in project" :nv "e"   #'projectile-find-file
    :desc "smerge hydra"         :nv "o"   #'+hydra-smerge/body
    :desc "Reload the project"   :nv "p"   #'projectile-invalidate-cache
    :desc "switch project"       :nv "P"   #'projectile-switch-project
@@ -81,7 +81,7 @@
    :desc "Find file"            :nv "t"   #'find-file
    :desc "Spawn file"           :nv "T"   #'+camsbury/spawn-file
    :desc "Save file"            :nv "w"   #'evil-write
-   :desc "Save file"            :nv "W"   #'evil-write-all
+   :desc "Eww browser"          :nv "W"   #'eww-new
    :desc "Save and close file"  :nv "q"   #'evil-save-modified-and-close
    :desc "Close file no save"   :nv "Q"   #'evil-quit
    :desc "Git Time Machine"     :nv "z"   #'git-timemachine-toggle
@@ -316,6 +316,7 @@
  (:after haskell-mode
    (:map haskell-mode-map
      (:localleader
+       :desc "search hoogle"    :nv "/" #'hoogle
        :desc "align imports"    :nv "a" #'haskell-align-imports
        :desc "import"           :nv "i" #'+camsbury/haskell/add-import
        :desc "restart repl"     :nv "j" #'intero-repl-restart

@@ -1,4 +1,4 @@
-
+# -*- shell-script -*-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -255,3 +255,7 @@ function upgrade-chunkwm() {
     brew services restart chunkwm
 }
 alias uch='upgrade-chunkwm'
+
+
+# shell stuff
+alias cat='bat'

@@ -6,6 +6,8 @@
                       :foreground "#ffffff"
                       :background (doom-color 'current-line)))
 
+(set-default-font "DejaVu Sans Mono 8")
+
 ;; config Emacs to use $PATH values
 (def-package! exec-path-from-shell
   :config

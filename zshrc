@@ -88,6 +88,19 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# gpg stuff
+# git config --global commit.gpgsign true
+# git config --global user.signingkey $KEY
+
+function sign-and-send {
+  gpg --sign-key "${1}" && gpg --send-keys "${1}"
+}
+
+alias pgz='gpg --list-secret-keys --keyid-format LONG'
+alias pgr='gpg --recv-keys'
+alias pgl='gpg --list-keys'
+alias pgs='sign-and-send'
+
 # git stuff
 function git-task-types {
   echo "fix - bug patching"
@@ -106,10 +119,12 @@ function git-files() {
   git show --pretty="" --name-only "${commit}" | cat
 }
 
-# gpg stuff
-# git config --global commit.gpgsign true
-# git config --global user.signingkey $KEY
-alias myg='gpg --list-secret-keys --keyid-format LONG'
+function gh() {
+    local file=`basename "$1"`
+    local ext=${file##*.}
+
+    git show "origin/master:${1}" | bat -l "${ext}" --paging always
+}
 
 alias git='hub'
 
@@ -215,6 +230,11 @@ function stack-watch-test-pattern() {
   stack test --file-watch grid:grid-test --ta "-p ${pattern}"
 }
 
+function stack-watch-test-path() {
+  pattern="${1:-}"
+  ghcid -c "stack ghci grid:lib grid:grid-test --ghci-options=-fobject-code" --height=$(tput lines) --width=$(tput cols) --warnings --test "${pattern}" | source-highlight -s haskell -f esc
+}
+
 alias hs='stack ghci'
 alias sb='stack build'
 alias sben='stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules'
@@ -223,14 +243,25 @@ alias st='stack test grid:grid-test --ta "--hedgehog-tests 5"'
 alias std='stack test grid:doctests'
 alias stl='stack test'
 # alias stw='stack test grid:grid-test --file-watch --ta "--hedgehog-tests 5"'
-alias stw='TASTY_HEDGEHOG_TESTS=5 ghcid -c "stack ghci grid:lib grid:grid-test --ghci-options=-fobject-code --warnings" --test "Main.main" | source-highlight -s haskell -f esc'
+alias stw='TASTY_HEDGEHOG_TESTS=5 ghcid -c "stack ghci grid:lib grid:grid-test --ghci-options=-fobject-code" --warnings --test "Main.main" | source-highlight -s haskell -f esc'
 alias stwp='stack-watch-test-pattern'
+alias stwpth='stack-watch-test-path'
 alias sbt="stack build --file-watch --test --test-arguments '--rerun --failure-report=TESTREPORT --rerun-all-on-success'"
-alias sbw='ghcid -c "stack ghci" | source-highlight -s haskell -f esc'
+alias sbw='ghcid -c "stack ghci --main-is grid:lib grid:grid-test grid:grid-bench" --height=$(tput lines) --width=$(tput cols) | source-highlight -s haskell -f esc'
 alias sd='stack clean && stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules  && stack build --pedantic && stack exec -- hlint src test app'
 alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "--hedgehog-tests 5" && stack bench --no-run-benchmarks --pedantic --ghc-options -Wno-missing-home-modules && stack build --pedantic && stack exec -- hlint src test app'
 alias shl='stack exec -- hlint src test app'
 alias s='stack'
+
+# nix stuff
+function nix-shell-haskell() {
+  # Creates a nix-shell with the specified arguments as Haskell packages
+  nix-shell -p "haskellPackages.ghcWithPackages (p: with p; [$@])"
+}
+
+alias ns='nix-shell'
+alias nsh='nix-shell-haskell'
+alias nrp="nix repl '<nixpkgs>'"
 
 # grid-client aliases
 alias pretty='npx prettier --write "./src/**/*.js"'

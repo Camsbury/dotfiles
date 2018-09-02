@@ -15,7 +15,6 @@
   ;; (load! +lsp)
   (load! +markdown)
   (load! +org)
-  (load! +projectile)
   (load! +slack)
   (load! +spotify)
   (load! +style)

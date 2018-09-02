@@ -28,20 +28,20 @@
   "opens a new vertical split, along with a fzf for a projectile file"
   (interactive)
   (require 'projectile)
-  (evil-window-vsplit)
+  (pretty-split)
   (projectile-find-file))
 
 (defun +spawn-recent-file ()
   "opens a new vertical split, along with a fzf for a recent file"
   (interactive)
   (require 'projectile)
-  (evil-window-vsplit)
+  (pretty-split)
   (counsel-recentf))
 
 (defun open-tmp-org ()
   "opens a temporary org file"
   (interactive)
-  (evil-window-vsplit)
+  (pretty-split)
   (find-file "/tmp/notes.org"))
 
 (defun eww-new ()
@@ -51,3 +51,58 @@
     (switch-to-buffer (generate-new-buffer "eww"))
     (eww-mode)
     (eww url)))
+
+(defun empire/haskell/module->test ()
+  "Jump from a module to a test."
+  (let ((filename (->> buffer-file-name
+                       (s-replace "/src/" "/test/")
+                       (s-replace ".hs" "Test.hs"))))
+    (make-directory (f-dirname filename) t)
+    (find-file filename)))
+
+(defun empire/haskell/test->module ()
+  "Jump from a test to a module."
+  (let ((filename (->> buffer-file-name
+                       (s-replace "/test/" "/src/")
+                       (s-replace "Test.hs" ".hs"))))
+    (make-directory (f-dirname filename) t)
+    (find-file filename)))
+
+(defun empire/haskell/test<->module ()
+  "Toggle between test and module in Haskell."
+  (if (s-contains? "/src/" buffer-file-name)
+      (empire/haskell/module->test)
+    (empire/haskell/test->module)))
+
+(defun empire/test<->module ()
+  "Toggle between test and module"
+  (interactive)
+  (if (s-ends-with? ".hs" buffer-file-name)
+      (empire/haskell/test<->module)))
+
+(defun set-window-width (count)
+  "Set the selected window's width."
+  (adjust-window-trailing-edge (selected-window) (- count (window-width)) t))
+
+(defun prettify-windows ()
+  "Set the windows all to have 83 chars of length"
+  (interactive)
+  (let ((my-window (selected-window)))
+    (select-window (frame-first-window))
+    (while (window-next-sibling)
+      (set-window-width 85)
+      (select-window (window-next-sibling)))
+    (select-window my-window)))
+
+(defun pretty-delete-window ()
+  "Cleans up after itself after deleting current window"
+  (interactive)
+  (let ((new-window (window-prev-sibling)))
+    (delete-window)
+    (prettify-windows)))
+
+(defun pretty-split ()
+  (interactive)
+  "Does a vsplit and prettifies"
+  (evil-window-vsplit)
+  (prettify-windows))

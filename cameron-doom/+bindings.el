@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (map!
  ;; :i   [remap newline] #'doom/newline-and-indent
- :n   "gt"            #'projectile-toggle-between-implementation-and-test
+ :n   "gt"            #'empire/test<->module
  :n   "ge"            #'flycheck-list-errors
  :niv "C-S-o"         #'evil-jump-forward
  :nv  "M-n"           #'+doom/blink-cursor ;; function no longer exists?
@@ -67,15 +67,16 @@
    :desc "Imenu"                :nv "i"   #'imenu
    :desc "Imenu across buffers" :nv "I"   #'imenu-anywhere
    :desc "Horizontal Split"     :nv "j"   #'evil-window-split
-   :desc "kill window"          :nv "k"   #'delete-window
+   :desc "kill window"          :nv "k"   #'pretty-delete-window
    :desc "kill buffer"          :nv "K"   #'kill-buffer
-   :desc "vertical split"       :nv "l"   #'evil-window-vsplit
+   :desc "vertical split"       :nv "l"   #'pretty-split
    :desc "todo list"            :nv "L"   #'org-todo-list
    :desc "Find file in project" :nv "n"   #'counsel-recentf
    :desc "Find file in project" :nv "e"   #'projectile-find-file
    :desc "smerge hydra"         :nv "o"   #'+hydra-smerge/body
-   :desc "Reload the project"   :nv "p"   #'projectile-invalidate-cache
-   :desc "switch project"       :nv "P"   #'projectile-switch-project
+   :desc "Reload the project"   :nv "P"   #'projectile-invalidate-cache
+   :desc "switch project"       :nv "p"   #'projectile-switch-project
+   :desc "restart emacs"        :nv "R"   #'restart-emacs
    :desc "Slack IM"             :nv "s"   #'slack-im-select
    :desc "Sort"                 :nv "S"   #'sort-lines
    :desc "Find file"            :nv "t"   #'find-file
@@ -319,13 +320,8 @@
        :desc "search hoogle"    :nv "/" #'hoogle
        :desc "align imports"    :nv "a" #'haskell-align-imports
        :desc "import"           :nv "i" #'+camsbury/haskell/add-import
-       :desc "restart repl"     :nv "j" #'intero-repl-restart
-       :desc "load repl"        :nv "l" #'intero-repl-load
        :desc "add extension"    :nv "o" #'hasky-extensions
-       :desc "restart intero"   :nv "r" #'intero-restart
-       :desc "stack execute"    :nv "s" #'hasky-stack-execute
-       :desc "get info"         :nv "f" #'intero-info
-       :desc "set targets"      :nv "h" #'intero-targets
+       :desc "restart intero"   :nv "r" #'dante-restart
        )
      [remap evil-open-below] #'+camsbury/haskell/evil-open-below
      )
@@ -364,18 +360,8 @@
    :n "q"   #'quit-window
    :n "Q"   #'+ivy-quit-and-resume))
 
-;; TODO: Make this do something!
-(map!
- (:after org-mode
-   (:map org-mode-map
-     :i [remap doom/inflate-space-maybe] #'org-self-insert-command
-     :n [evil-goto-line] #'+org/dwim-at-point
-     :nv "C-j" #'evil-window-down
-     :nv "C-k" #'evil-window-up
-     :inv "M-]" #'org-metaright
-     :inv "M-[" #'org-metaleft)))
 
-      ;; yasnippet
+;; yasnippet
 (map!
  (:after yasnippet
    (:map yas-keymap

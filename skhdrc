@@ -60,6 +60,6 @@ hyper - t : open -a /Applications/iTerm.app
 # hyper - u : open -a filler
 hyper - v : open -a /Applications/VLC.app
 hyper - w : open -a /Applications/Preview.app
-# hyper - x : open -a filler
+hyper - x : open -a /Applications/Keybase.app
 # hyper - y : open -a filler
 # hyper - z : open -a filler

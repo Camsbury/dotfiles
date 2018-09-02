@@ -17,7 +17,8 @@
 (package! smeargle)
 
 ;; haskell
-(package! intero)
+;; (package! intero)
+(package! dante)
 (package! hasky-stack)
 (package! hasky-extensions)
 (package! evil-text-objects-haskell :recipe (:fetcher github :repo "urbint/evil-text-objects-haskell"))

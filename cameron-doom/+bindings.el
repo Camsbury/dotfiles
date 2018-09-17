@@ -59,6 +59,7 @@
    :desc "All buffers"          :nv "]"   #'switch-to-buffer
    :desc "from project"         :nv "a"   #'+projectile-switch-project-workspace
    :desc "Agenda list"          :nv "A"   #'org-agenda-list
+   :desc "Blind Mode"           :nv "b"   #'blind-mode
    :desc "Jump to definition"   :nv "d"   #'+lookup/definition
    :desc "Magit status"         :nv "g"   #'magit-status
    :desc "Magit blame"          :nv "G"   #'magit-blame

@@ -253,15 +253,36 @@ alias sds='stack test --pedantic --ghc-options -Wno-missing-home-modules --ta "-
 alias shl='stack exec -- hlint src test app'
 alias s='stack'
 
+# cabal stuff
+alias cbw='ghcid -c "cabal repl lib:bobby" --height=$(tput lines) --width=$(tput cols) | source-highlight -s haskell -f esc'
+
 # nix stuff
 function nix-shell-haskell() {
   # Creates a nix-shell with the specified arguments as Haskell packages
   nix-shell -p "haskellPackages.ghcWithPackages (p: with p; [$@])"
 }
 
+function nix-query () {
+  local CACHE="$HOME/.cache/nq-cache"
+  if ! ( [ -e $CACHE ] && [ $(stat -c %Y $CACHE) -gt $(( $(date +%s) - 3600 )) ] ); then
+    echo "update cache" && nix-env -qa --json > "$CACHE"
+  fi
+  jq -r 'to_entries | .[] | .key + "|" + .value.meta.description' < "$CACHE" |
+    {
+       if [ $# -gt 0 ]; then
+          # double grep because coloring breaks column's char count
+          # $* so that we include spaces (could do .* instead?)
+            grep -i "$*" | column -t -s "|" | grep --color=always -i "$*"
+       else
+            column -t -s "|"
+       fi
+    }
+}
+
 alias ns='nix-shell'
 alias nsh='nix-shell-haskell'
 alias nrp="nix repl '<nixpkgs>'"
+alias nq="nix-query"
 
 # grid-client aliases
 alias pretty='npx prettier --write "./src/**/*.js"'
@@ -290,3 +311,16 @@ alias uch='upgrade-chunkwm'
 
 # shell stuff
 alias cat='bat'
+
+# slack dark thenme
+function dark-slack() {
+
+echo "\ndocument.addEventListener('DOMContentLoaded', function() {
+ $.ajax({
+   url: 'https://cdn.rawgit.com/laCour/slack-night-mode/master/css/raw/black.css',
+   success: function(css) {
+     \$(\"<style></style>\").appendTo('head').html(css);
+   }
+ });
+});" >> /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
+}

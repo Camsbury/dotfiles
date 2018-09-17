@@ -3,13 +3,11 @@
 (add-hook! haskell-mode
   (setq
    whitespace-line-column 80
-   whitespace-style
-   '(face trailing lines-tail))
+   whitespace-style '(face trailing lines-tail))
   (whitespace-mode t)
   (auto-fill-mode t)
   (rainbow-delimiters-mode)
   (require 'hasky-extensions)
-  (require 'hasky-stack)
   (require 'evil-text-objects-haskell)
   (evil-text-objects-haskell/install)
   (dante-mode)

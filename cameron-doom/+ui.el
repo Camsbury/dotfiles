@@ -1,11 +1,4 @@
-(after! doom-themes
-  ;; Since Fira Mono doesn't have an italicized variant, highlight it instead
-  (setq doom-theme 'doom-molokai)
-  (set-face-attribute 'italic nil
-                      :weight 'ultra-light
-                      :foreground "#ffffff"
-                      :background (doom-color 'current-line)))
-
+(setq doom-theme 'doom-molokai)
 (set-default-font "DejaVu Sans Mono 8")
 
 ;; config Emacs to use $PATH values

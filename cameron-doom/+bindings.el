@@ -186,6 +186,9 @@
  :n  "gc" #'evil-commentary
  ;; evil-exchange
  :n  "gx" #'evil-exchange
+ ;; avy
+ :nv [remap evil-snipe-s] #'avy-goto-char
+ :nv [remap evil-snipe-S] #'avy-goto-char-2
  ;; evil-matchit
  :nv [tab] #'+evil/matchit-or-toggle-fold)
 
@@ -231,15 +234,6 @@
  :v  "S"  #'evil-surround-region
  :o  "s"  #'evil-surround-edit
  :o  "S"  #'evil-Surround-edit)
-
-;; evil-snipe
-(map!
- (:after evil-snipe
-   ;; Binding to switch to evil-easymotion/avy after a snipe
-   :map evil-snipe-parent-transient-map
-   "C-;" (λ! (require 'evil-easymotion)
-             (call-interactively +evil--snipe-repeat-fn)))
- )
 
 
 

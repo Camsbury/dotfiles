@@ -72,6 +72,17 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# zsh completions
+fpath=(~/.zsh/completion $fpath)
+
+# docker completions?
+autoload -Uz compinit && compinit -i
+
+# Add python3 to path
+# export PATH=$HOME/Library/Python/3.7/bin:$PATH
+
+export PATH=/usr/local/Cellar/postgresql/11.1/bin:$PATH
+
 # Secrets stuff
 if [ -f '$HOME/.secrets.zsh.inc' ]; then source '$HOME/.secrets.zsh.inc'; fi
 
@@ -84,7 +95,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions alias-tips)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,9 +137,18 @@ function gh() {
     git show "origin/master:${1}" | bat -l "${ext}" --paging always
 }
 
+function cd-git-head() {
+  cd "$(git rev-parse --show-toplevel)"
+}
+
+function git-branch-delete-many() {
+  git branch -D `git branch | grep -E ${1}`
+}
+
 alias git='hub'
 
 alias gbdd='git branch -D'
+alias gbdm='git-branch-delete-many'
 alias gbm='git branch --merged'
 alias gcan='git commit --no-edit --amend'
 alias gdh='git diff head~ head'
@@ -136,7 +156,8 @@ alias gds='git diff --staged'
 alias gfl='git-files'
 alias gfx='git commit --fixup'
 alias gi='git init'
-alias glf='git fetch && git reset --hard origin/master'
+alias glf='git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)'
+alias glfm='git fetch && git reset --hard origin/master'
 alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gpf='git push --force'
 alias gpop='git reset head~'
@@ -149,6 +170,9 @@ alias gsbu='git status -sbu'
 alias gsn='git add .; git commit --no-verify -m "wip"; git reset head~'
 alias gtt='git-task-types'
 alias pulls='open "https://github.com:/$(git remote -v | /usr/bin/grep -oP "(?<=git@github.com:).+(?=\.git)" | head -n 1)/pulls"'
+alias ghsh="git rev-parse --short head"
+
+alias cdg='cd-git-head'
 
 # tmux functions
 function tt() {
@@ -185,22 +209,6 @@ if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then source '$HOME/google-cloud
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then source '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
-# mix aliases
-alias tism='MIX_ENV=test iex -S mix'
-alias ism='iex -S mix'
-alias mdg='mix deps.get'
-alias max='cd ~/projects/urbint/machina/ && iex -S mix && cd -'
-alias madb='rm -rf data/*db data/test/*db'
-alias mxc='mix credo --strict'
-alias mxd='mix dialyzer --halt-exit-status'
-alias mcmp='mix compile --force --warnings-as-errors'
-alias mpost='docker rm machina-postgres && mix docker.up'
-alias mem='mix ecto.migrate'
-alias tmem='MIX_ENV=test mix ecto.migrate'
-
-# iex stuff
-export ERL_AFLAGS="-kernel shell_history enabled"
-
 # shell aliases
 alias zz='source ~/.zshrc'
 alias ls='exa'
@@ -208,8 +216,19 @@ alias ll='exa -l'
 alias la='exa -la'
 
 # python aliases
-alias py='python'
-alias py3='python3'
+function python-shell() {
+  pkgs=`echo 'python37.withPackages(ps: with ps; [ '$@' ])'`
+  nix-shell -p $pkgs --run python3
+}
+alias py='python-shell'
+alias ptw="pipenv run watchmedo auto-restart --recursive -p '*.py' -- python -m pytest grid/jobs/tests --show-capture=all"
+alias pei='pipenv install --dev'
+alias pesy='pipenv sync --dev'
+alias pes='pipenv shell'
+alias pyf='pipenv run yapf --in-place --recursive .'
+alias pmy='pipenv run alembic upgrade head'
+alias auh='alembic upgrade head'
+alias amg='alembic revision -m'
 
 # drone env variables
 export DRONE_TOKEN=$DRONE_TOKEN_PRIVATE
@@ -279,10 +298,34 @@ function nix-query () {
     }
 }
 
-alias ns='nix-shell'
+source $HOME/.nix-profile/etc/profile.d/nix.sh
+export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
+export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin:$NIX_PATH
+# Add darwin-nix to path
+export PATH=$(nix-build '<darwin>' -A system --no-out-link)/sw/bin/:$PATH
+
 alias nsh='nix-shell-haskell'
 alias nrp="nix repl '<nixpkgs>'"
-alias nq="nix-query"
+alias nb='nix-build'
+alias ne='nix-env'
+alias nhash='nix-prefetch-url --type sha256'
+alias nq='nix-query'
+alias nqu='NIXPKGS_ALLOW_UNFREE=1 nix-env -qaP'
+alias nr='nix repl'
+alias ns='nix-shell'
+alias nsu="nix-shell --arg nixpkgs 'import <nixpkgs-unstable> {}'"
+alias nsp='nix-shell -p'
+alias nst='nix-store'
+alias nsref='nix-store-references'
+alias nsrefr='nix-store-referrers'
+alias ndeps='nix-store-deps'
+alias ndtree='nix-store-deps-tree'
+alias nstp='nix-store-path'
+alias dxs='darwin-rebuild switch'
+alias nl='nix-env -q'
+alias nxs='cd ~ && sudo nixos-rebuild switch; cd -'
+alias nxsr='cd ~ && sudo nixos-rebuild switch && sudo reboot'
+alias nxt='cd ~ && sudo nixos-rebuild test; cd -'
 
 # grid-client aliases
 alias pretty='npx prettier --write "./src/**/*.js"'
@@ -324,3 +367,56 @@ echo "\ndocument.addEventListener('DOMContentLoaded', function() {
  });
 });" >> /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
 }
+
+# docker
+function docker-restart-and-log() {
+  docker-compose restart "$1" && docker-compose logs -f "$1"
+}
+
+alias dcud='docker-compose up -d'
+alias dclf='docker-compose logs -f'
+alias dc='docker-compose'
+alias dcub='docker-compose up --build -d'
+alias dcr='docker-compose restart'
+alias dps='docker ps'
+alias dsac='docker stop $(docker ps -aq)'
+alias drac='docker rm $(docker ps -aq)'
+alias dcrf="docker-restart-and-log"
+alias dcrb="docker-compose restart server celery celery-beat celery-process-video celery-classify-frames celery-upload-video-to-gcs"
+
+# kubernetes
+
+function kubernetes-select-project() {
+  if [ -z "${1}" ]; then
+      echo "Please select an instance of interest: peoples, nicor, staging, none"
+  elif [ "${1}" == "peoples" ]; then
+      gcloud config set project pg-cb-detect
+      gcloud container clusters get-credentials peoples
+      kubectl config set-context $(kubectl config current-context) --namespace=grid-peoples
+  elif [ "${1}" == "nicor" ]; then
+      gcloud config set project urbint-1259
+      gcloud container clusters get-credentials nicor
+      kubectl config set-context $(kubectl config current-context) --namespace=grid-nicor
+  elif [ "${1}" == "staging" ]; then
+      gcloud config set project urbint-1259
+      gcloud container clusters get-credentials staging
+      kubectl config set-context $(kubectl config current-context) --namespace=grid-staging
+  elif [ "${1}" == "none" ]; then
+      gcloud config set project urbint-1259
+      gcloud container clusters get-credentials staging
+      kubectl config set-context $(kubectl config current-context) --namespace=default
+  else
+      echo "Invalid selection. Choose: peoples, nicor, staging, none"
+  fi
+}
+
+alias kp="kubernetes-select-project"
+alias kc='kubectl'
+alias gclc='gcloud container clusters get-credentials' # followed by the cluster name
+
+# grid
+alias gclient='cd ~/projects/urbint/grid/client/src && yarn start && cd -'
+alias cbclient='cd ~/projects/urbint/grid/crossbore-client/src && yarn start && cd -'
+
+# xndr
+alias xndr='~/projects/xndr/dist/build/xndr/xndr'

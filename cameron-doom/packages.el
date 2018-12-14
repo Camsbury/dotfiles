@@ -39,10 +39,14 @@
 (package! lsp-mode)
 (package! lsp-ui :recipe (:fetcher github :repo "emacs-lsp/lsp-ui"))
 (package! lsp-haskell)
+(package! lsp-python)
 (package! company-lsp)
 
 ;; markdown
 (package! gh-md)
+
+;; python
+(package! jedi)
 
 ;; slack
 (package! slack)

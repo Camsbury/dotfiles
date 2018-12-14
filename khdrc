@@ -1,4 +1,3 @@
-
 # -*- shell-script -*-
 
 ################################################################################
@@ -29,12 +28,6 @@ colemak + ctrl + shift + alt - e : chunkc tiling::window --toggle fullscreen
 default + ctrl + shift + alt - t : chunkc tiling::window --toggle float
 colemak + ctrl + shift + alt - f : chunkc tiling::window --toggle float
 
-# change layout
-default + ctrl + shift + alt - e : chunkc tiling::desktop --layout bsp
-colemak + ctrl + shift + alt - k : chunkc tiling::desktop --layout bsp
-default + ctrl + shift + alt - s : chunkc tiling::desktop --layout monocle
-colemak + ctrl + shift + alt - d : chunkc tiling::desktop --layout monocle
-
 # kill window
 default + ctrl + shift + alt - q : chunkc tiling::window --close
 colemak + ctrl + shift + alt - q : chunkc tiling::window --close
@@ -64,6 +57,8 @@ colemak + ctrl + shift + alt - r : chunkc tiling::window --send-to-monitor prev
 
 ################################################################################
 # apps
+#
+
 default + cmd + ctrl + shift + alt - a : open -a /Applications/Utilities/Activity\ Monitor.app
 colemak + cmd + ctrl + shift + alt - a : open -a /Applications/Utilities/Activity\ Monitor.app
 default + cmd + ctrl + shift + alt - b : open -a /Applications/iBooks.app
@@ -72,10 +67,13 @@ default + cmd + ctrl + shift + alt - c : open -a /Applications/Google\ Chrome.ap
 colemak + cmd + ctrl + shift + alt - c : open -a /Applications/Google\ Chrome.app
 default + cmd + ctrl + shift + alt - d : open -a /Applications/Dash.app
 colemak + cmd + ctrl + shift + alt - g : open -a /Applications/Dash.app
-default + cmd + ctrl + shift + alt - e : open -a /usr/local/Cellar/emacs/26.1-rc1/Emacs.app
-colemak + cmd + ctrl + shift + alt - k : open -a /usr/local/Cellar/emacs/26.1-rc1/Emacs.app
-# default + cmd + ctrl + shift + alt - f : open -a filler
-# colemak + cmd + ctrl + shift + alt - e : open -a filler
+# default + cmd + ctrl + shift + alt - e : open -a /nix/store/yfg89w55rpin0hw2is0ph51ns6dy1ij0-darwin-system-19.03pre-git/Applications/Emacs.app
+# colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/yfg89w55rpin0hw2is0ph51ns6dy1ij0-darwin-system-19.03pre-git/Applications/Emacs.app
+default + cmd + ctrl + shift + alt - e : open -a /nix/store/5lkl416scfxgxcv2rh5halsq24w4450v-darwin-system-19.03pre-git/Applications/Emacs.app
+colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/5lkl416scfxgxcv2rh5halsq24w4450v-darwin-system-19.03pre-git/Applications/Emacs.app
+
+default + cmd + ctrl + shift + alt - f : open -a /Applications/Figma.app
+colemak + cmd + ctrl + shift + alt - e : open -a /Applications/Figma.app
 # default + cmd + ctrl + shift + alt - g : open -a filler
 # colemak + cmd + ctrl + shift + alt - d : open -a filler
 # default + cmd + ctrl + shift + alt - h : open -a filler
@@ -92,8 +90,8 @@ default + cmd + ctrl + shift + alt - m : open -a /Applications/Messages.app
 colemak + cmd + ctrl + shift + alt - m : open -a /Applications/Messages.app
 # default + cmd + ctrl + shift + alt - n : open -a filler
 # colemak + cmd + ctrl + shift + alt - j : open -a filler
-# default + cmd + ctrl + shift + alt - o : open -a filler
-# colemak + cmd + ctrl + shift + alt - 0x29 : open -a filler
+default + cmd + ctrl + shift + alt - o : open -a /Applications/Postico.app
+colemak + cmd + ctrl + shift + alt - 0x29 : open -a /Applications/Postico.app
 default + cmd + ctrl + shift + alt - p : open -a /Applications/1Password\ 6.app
 colemak + cmd + ctrl + shift + alt - r : open -a /Applications/1Password\ 6.app
 # default + cmd + ctrl + shift + alt - q : open -a filler

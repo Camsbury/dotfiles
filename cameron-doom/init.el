@@ -14,6 +14,9 @@
             ))
 (setenv "PATH" (string-join exec-path ":"))
 
+(setq evil-want-keybinding nil)
+(setq evil-want-integration t)
+
 ;; Choose what I want from hlissner
 (doom! :feature
        eval              ; run code, run (also, repls)
@@ -104,7 +107,7 @@
        ;php               ; make php less awful to work with
        ;plantuml          ; diagrams for confusing people more
        ;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       ;; python            ; beautiful is better than ugly
        rest              ; Emacs as a REST client
        ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()

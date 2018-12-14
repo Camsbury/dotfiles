@@ -16,6 +16,7 @@
   ;; (load! "+lsp")
   (load! "+markdown")
   (load! "+org")
+  (load! "+python")
   (load! "+slack")
   (load! "+spotify")
   (load! "+style")

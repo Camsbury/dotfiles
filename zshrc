@@ -141,7 +141,7 @@ function cd-git-head() {
   cd "$(git rev-parse --show-toplevel)"
 }
 
-function git-branch-delete-many() {
+function git-branch-delete-pattern() {
   git branch -D `git branch | grep -E ${1}`
 }
 
@@ -157,7 +157,7 @@ function git-force-pull() {
 alias git='hub'
 
 alias gbdd='git branch -D'
-alias gbdm='git-branch-delete-many'
+alias gbdp='git-branch-delete-pattern'
 alias gbm='git branch --merged'
 alias gcan='git commit --no-edit --amend'
 alias gcop='git-branch-checkout-pattern'

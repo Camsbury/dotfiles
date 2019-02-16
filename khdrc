@@ -67,11 +67,10 @@ default + cmd + ctrl + shift + alt - c : open -a /Applications/Google\ Chrome.ap
 colemak + cmd + ctrl + shift + alt - c : open -a /Applications/Google\ Chrome.app
 default + cmd + ctrl + shift + alt - d : open -a /Applications/Dash.app
 colemak + cmd + ctrl + shift + alt - g : open -a /Applications/Dash.app
-# default + cmd + ctrl + shift + alt - e : open -a /nix/store/yfg89w55rpin0hw2is0ph51ns6dy1ij0-darwin-system-19.03pre-git/Applications/Emacs.app
-# colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/yfg89w55rpin0hw2is0ph51ns6dy1ij0-darwin-system-19.03pre-git/Applications/Emacs.app
-default + cmd + ctrl + shift + alt - e : open -a /nix/store/5lkl416scfxgxcv2rh5halsq24w4450v-darwin-system-19.03pre-git/Applications/Emacs.app
-colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/5lkl416scfxgxcv2rh5halsq24w4450v-darwin-system-19.03pre-git/Applications/Emacs.app
-
+default + cmd + ctrl + shift + alt - e : open -a /nix/store/h6s2syp85liqcc37p7njn1rdxjbvi63d-darwin-system-19.03pre-git/Applications/Emacs.app
+colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/h6s2syp85liqcc37p7njn1rdxjbvi63d-darwin-system-19.03pre-git/Applications/Emacs.app
+# default + cmd + ctrl + shift + alt - e : open -a /nix/store/lm53ac6kjdz2kyvqvx67z09yzn4zih0m-darwin-system-19.03pre-git/Applications/Emacs.app
+# colemak + cmd + ctrl + shift + alt - k : open -a /nix/store/lm53ac6kjdz2kyvqvx67z09yzn4zih0m-darwin-system-19.03pre-git/Applications/Emacs.app
 default + cmd + ctrl + shift + alt - f : open -a /Applications/Figma.app
 colemak + cmd + ctrl + shift + alt - e : open -a /Applications/Figma.app
 # default + cmd + ctrl + shift + alt - g : open -a filler

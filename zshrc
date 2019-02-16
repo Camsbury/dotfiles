@@ -81,7 +81,7 @@ autoload -Uz compinit && compinit -i
 # Add python3 to path
 # export PATH=$HOME/Library/Python/3.7/bin:$PATH
 
-export PATH=/usr/local/Cellar/postgresql/11.1/bin:$PATH
+export PATH=/usr/local/Cellar/postgresql/11.1_1/bin:$PATH
 
 # Secrets stuff
 if [ -f '$HOME/.secrets.zsh.inc' ]; then source '$HOME/.secrets.zsh.inc'; fi
@@ -95,7 +95,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions alias-tips)
+plugins=(git zsh-autosuggestions alias-tips kubetail)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,18 +145,28 @@ function git-branch-delete-many() {
   git branch -D `git branch | grep -E ${1}`
 }
 
+function git-branch-checkout-pattern() {
+  git checkout `git branch | grep -E ${1} | sed -n 1p`
+}
+
+function git-force-pull() {
+  commit="${1:-$(git symbolic-ref --short HEAD)}"
+  git fetch && git reset --hard origin/"${commit}"
+}
+
 alias git='hub'
 
 alias gbdd='git branch -D'
 alias gbdm='git-branch-delete-many'
 alias gbm='git branch --merged'
 alias gcan='git commit --no-edit --amend'
+alias gcop='git-branch-checkout-pattern'
 alias gdh='git diff head~ head'
 alias gds='git diff --staged'
 alias gfl='git-files'
 alias gfx='git commit --fixup'
 alias gi='git init'
-alias glf='git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)'
+alias glf='git-force-pull'
 alias glfm='git fetch && git reset --hard origin/master'
 alias glp="git log --graph --pretty=format:'%Cred%h%Creset -%Cblue %an %Creset - %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gpf='git push --force'
@@ -382,41 +392,32 @@ alias dps='docker ps'
 alias dsac='docker stop $(docker ps -aq)'
 alias drac='docker rm $(docker ps -aq)'
 alias dcrf="docker-restart-and-log"
-alias dcrb="docker-compose restart server celery celery-beat celery-process-video celery-classify-frames celery-upload-video-to-gcs"
+alias dcrb="docker-compose restart server internal_server celery celery-beat celery-process-video celery-classify-frames celery-upload-video-to-gcs"
+alias dclb="docker-compose logs -f server internal_server celery celery-beat celery-process-video celery-classify-frames celery-upload-video-to-gcs"
+alias drni="docker rmi $(docker images | grep '^<none>' | awk '{print $3}')"
+alias drdi="docker rmi $(docker images -q -f "dangling=true")"
+alias drmc="docker rm $(docker ps -q -f 'status=exited')"
 
-# kubernetes
-
-function kubernetes-select-project() {
-  if [ -z "${1}" ]; then
-      echo "Please select an instance of interest: peoples, nicor, staging, none"
-  elif [ "${1}" == "peoples" ]; then
-      gcloud config set project pg-cb-detect
-      gcloud container clusters get-credentials peoples
-      kubectl config set-context $(kubectl config current-context) --namespace=grid-peoples
-  elif [ "${1}" == "nicor" ]; then
-      gcloud config set project urbint-1259
-      gcloud container clusters get-credentials nicor
-      kubectl config set-context $(kubectl config current-context) --namespace=grid-nicor
-  elif [ "${1}" == "staging" ]; then
-      gcloud config set project urbint-1259
-      gcloud container clusters get-credentials staging
-      kubectl config set-context $(kubectl config current-context) --namespace=grid-staging
-  elif [ "${1}" == "none" ]; then
-      gcloud config set project urbint-1259
-      gcloud container clusters get-credentials staging
-      kubectl config set-context $(kubectl config current-context) --namespace=default
-  else
-      echo "Invalid selection. Choose: peoples, nicor, staging, none"
-  fi
+function kpods-by-app() {
+  kubectl get pods --selector="app=${1}"
 }
 
-alias kp="kubernetes-select-project"
+# kubernetes
 alias kc='kubectl'
+alias kt='kubetail'
+alias klj='kubetail grid-jobs'
+alias kls='kubetail server'
+alias klb='kubetail "grid-(server|jobs|celery\S*)" --regex'
+alias kp='kubectl get pods'
+alias kpn='kpods-by-app'
+alias kdys='kubectl get deployments'
+alias ksrvs='kubectl get services'
+alias kpw='kubectl get pods -w'
+alias klf='kubectl logs -f'
 alias gclc='gcloud container clusters get-credentials' # followed by the cluster name
 
 # grid
-alias gclient='cd ~/projects/urbint/grid/client/src && yarn start && cd -'
-alias cbclient='cd ~/projects/urbint/grid/crossbore-client/src && yarn start && cd -'
+alias gcyp='(cd ~/projects/urbint/grid && ./scripts/cypress.sh open)'
 
 # xndr
 alias xndr='~/projects/xndr/dist/build/xndr/xndr'
